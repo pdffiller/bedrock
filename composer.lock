@@ -290,11 +290,11 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:pdffiller/blog-plugin-form-content-provider.git",
-                "reference": "a837ddc3b26932e83e33f7be071942527236ab3f"
+                "reference": "457ab9f10534159f44eef036c5eaac01255ac691"
             },
             "type": "wordpress-plugin",
             "description": "PDFfiller Blog Form Content Provider Plugin",
-            "time": "2017-03-31 10:46:55"
+            "time": "2017-03-31 12:30:11"
         },
         {
             "name": "pdffiller/blog-plugin-related-forms",
