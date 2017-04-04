@@ -278,11 +278,11 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:pdffiller/blog-pdffiller-client.git",
-                "reference": "aef0ecca2626cb2b7a9ebada0126bc12ca66cea3"
+                "reference": "650dea9f00f8b86848b7b0c74e2cbf8482b9f7e8"
             },
             "type": "wordpress-plugin",
             "description": "PDFfiller Blog Client for Product",
-            "time": "2017-03-31 09:46:35"
+            "time": "2017-04-03 07:52:40"
         },
         {
             "name": "pdffiller/blog-plugin-form-content-provider",
@@ -290,11 +290,11 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:pdffiller/blog-plugin-form-content-provider.git",
-                "reference": "457ab9f10534159f44eef036c5eaac01255ac691"
+                "reference": "acc00c395e7c41da35b5fe122335f6151c2cd695"
             },
             "type": "wordpress-plugin",
             "description": "PDFfiller Blog Form Content Provider Plugin",
-            "time": "2017-03-31 12:30:11"
+            "time": "2017-04-03 08:31:24"
         },
         {
             "name": "pdffiller/blog-plugin-related-forms",
@@ -302,11 +302,11 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:pdffiller/blog-plugin-related-forms.git",
-                "reference": "ef7257ba3006fe901e2f39602c171869b8345d2b"
+                "reference": "896552074d7412a9c73f7ad4f1b46d842e444b8d"
             },
             "type": "wordpress-plugin",
             "description": "PDFfiller Blog Related Forms Plugin",
-            "time": "2017-03-31 10:46:14"
+            "time": "2017-04-04 13:28:15"
         },
         {
             "name": "pdffiller/blog-plugin-text-seo-scoring",
@@ -326,11 +326,11 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:pdffiller/blog-theme.git",
-                "reference": "a8286eebab2cc0246adc66e00e56210b47796be4"
+                "reference": "b5d97ae8a877f0a5490720823ea4e4d876224950"
             },
             "type": "wordpress-theme",
             "description": "PDFfiller blog theme",
-            "time": "2017-02-22 12:30:24"
+            "time": "2017-04-04 13:29:06"
         },
         {
             "name": "roots/wp-password-bcrypt",
