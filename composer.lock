@@ -302,11 +302,11 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:pdffiller/blog-plugin-related-forms.git",
-                "reference": "896552074d7412a9c73f7ad4f1b46d842e444b8d"
+                "reference": "79f517d68a0296a4a6253dc83c8e60b008aee742"
             },
             "type": "wordpress-plugin",
             "description": "PDFfiller Blog Related Forms Plugin",
-            "time": "2017-04-04 13:28:15"
+            "time": "2017-04-04 13:51:00"
         },
         {
             "name": "pdffiller/blog-plugin-text-seo-scoring",
