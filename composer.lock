@@ -278,11 +278,11 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:pdffiller/blog-pdffiller-client.git",
-                "reference": "650dea9f00f8b86848b7b0c74e2cbf8482b9f7e8"
+                "reference": "0a956a55542a90246240c92e14ab35a62c9bd593"
             },
             "type": "wordpress-plugin",
             "description": "PDFfiller Blog Client for Product",
-            "time": "2017-04-03 07:52:40"
+            "time": "2017-04-05 10:51:03"
         },
         {
             "name": "pdffiller/blog-plugin-form-content-provider",
@@ -302,11 +302,11 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:pdffiller/blog-plugin-related-forms.git",
-                "reference": "79f517d68a0296a4a6253dc83c8e60b008aee742"
+                "reference": "c6a276fe7ea9a45f45bb86644c924fcc3ccaef05"
             },
             "type": "wordpress-plugin",
             "description": "PDFfiller Blog Related Forms Plugin",
-            "time": "2017-04-04 13:51:00"
+            "time": "2017-04-05 10:50:02"
         },
         {
             "name": "pdffiller/blog-plugin-text-seo-scoring",
@@ -492,15 +492,15 @@
         },
         {
             "name": "wpackagist-plugin/jetpack",
-            "version": "4.7.1",
+            "version": "4.8",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/jetpack/",
-                "reference": "tags/4.7.1"
+                "reference": "tags/4.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/jetpack.4.7.1.zip",
+                "url": "https://downloads.wordpress.org/plugin/jetpack.4.8.zip",
                 "reference": null,
                 "shasum": null
             },
