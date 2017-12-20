@@ -1,0 +1,103 @@
+
+/*-----------------------------------------------
+
+    Theme:	skeleton
+    Author:	GoGetThemes.com
+    Version:	1.0
+
+    [MAIN STYLESHEET: addon.css]
+
+
+    TABLE OF CONTENTS:
+
+    1.0 VC Styles
+
+
+-----------------------------------------------*/
+
+/*-------------------------------
+    1.0 VC Styles
+--------------------------------*/
+
+.vc_progress_bar .vc_single_bar,
+.vc_progress_bar .vc_single_bar .vc_bar {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) inset !important;
+    -webkt-border-radius: 50px !important;
+    -moz-border-radius: 50px !important;
+    border-radius: 50px !important;
+}
+input.wpcf7-form-control, textarea.wpcf7-form-control {
+    border: 0 solid #000;
+    max-width: 100%;
+    padding: 10px 30px;
+    font-weight: 400;
+}
+.wpcf7 label {
+    font-weight: 500;
+    margin: 0;
+}
+.wpb_revslider_element {
+    padding: 0;
+    margin: 0 !important;
+}
+.wpcf7-form-control.g-recaptcha.wpcf7-recaptcha {
+    margin-bottom: 10px;
+}
+.img-border-radius img {
+    -webkt-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+div#at4-share {
+    top: 46%;
+}
+
+.ult_pricing_table:hover {
+    box-shadow: 0 0 0 0 rgba(0,0,0,0) !important;
+}
+
+.vc_general.vc_cta3 {
+    border: 0 solid !important;
+}
+.wpb_accordion .wpb_accordion_wrapper .ui-state-active .ui-icon,
+.wpb_accordion .wpb_accordion_wrapper .ui-state-default .ui-icon{
+    background-image: none !important;
+}
+
+.wpb_accordion_header {
+    background: transparent none repeat scroll 0 0 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px 0 !important;
+}
+.wpb_accordion_header::before {
+    content: "\e90c";
+    font-family: "ggt-lineicons";
+    opacity: 0.4;
+    position: absolute;
+    right: 30px;
+    top: 17px;
+}
+.wpb_accordion_header a {
+    font-weight: 600;
+}
+.ult-style-1 .ult-team-member-position, .ult-style-2 .ult-team-member-position, .ult-style-3 .ult-team-member-position, .ult-style-1 .ult-team-member-name-wrap .ult-team-member-name, .ult-style-2 .ult-team-member-name-wrap .ult-team-member-name, .ult-style-3 .ult-team-member-name-wrap .ult-team-member-name {
+    text-transform: none !important;
+}
+
+@media only screen and (max-width: 480px) {
+    .ult-video-banner-title {
+        font-size: 120% !important;
+    }
+    .ult-video-banner-content {
+        font-size: 60% !important;
+    }
+}
+@media only screen and (max-width: 980px) {
+    .ult-video-banner-title {
+        font-size: 120% !important;
+    }
+    .ult-video-banner-content {
+        font-size: 60% !important;
+    }
+}

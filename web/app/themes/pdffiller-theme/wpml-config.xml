@@ -1,0 +1,12 @@
+<wpml-config>
+    <admin-texts>
+        <key name="theme_data">
+			<key name="site_title" />
+            <key name="site_keywords" />
+            <key name="site_desc" />
+            <key name="footer_power" />
+            <key name="footer_socials_title" />
+            <key name="footer_socials_subtitle" />
+        </key>
+    </admin-texts>
+</wpml-config>

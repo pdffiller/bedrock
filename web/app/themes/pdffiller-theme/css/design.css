@@ -1,0 +1,390 @@
+/******
+ADDON STYLES
+******/
+
+
+.ggt-post-loop-item:hover .ggt-image-overlay,
+.ggt-post-roll-item:hover .ggt-image-overlay {
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    transform: scale(1.5);
+    opacity: .8;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+.ggt-portfolio-item .ggt-image-overlay,
+.ggt-post-loop-item .ggt-image-overlay,
+.ggt-post-roll-item .ggt-image-overlay {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -moz-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    top: 50%;
+    bottom: 50%;
+    opacity: .2;
+}
+
+.overlay-btn {
+    position: absolute;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    bottom: -50px;
+    margin: auto;
+    background: #fff;
+    -webkit-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -moz-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+}
+.overlay-btn::before {
+    content: "\e924";
+    font-size: 20px;
+    font-family: ggtctrl;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 13px;
+    bottom: 0;
+    z-index: 999;
+    -webkit-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -moz-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+}
+.ggt-post-roll-item:hover .overlay-btn,
+.ggt-portfolio-item:hover .overlay-btn {
+    opacity: 1;
+    bottom: 0;
+    left: 0;
+    right: 100%;
+}
+.ggt-post-loop-item .overlay-btn {
+    left: 30px;
+}
+.ggt-post-loop-item:hover .overlay-btn {
+    bottom: 30px;
+    left: 30px;
+}
+
+/* Accordion */
+/* ----- Accordion all styles ------ */
+
+.ggt-accordion.ggt-style1 .ggt-panel .ggt-panel-title,
+.ggt-accordion.ggt-style2 .ggt-panel .ggt-panel-title,
+.ggt-accordion.ggt-style3 .ggt-panel .ggt-panel-title {
+    -webkit-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -moz-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+}
+.ggt-accordion.ggt-style1 .ggt-panel .ggt-panel-title::after,
+.ggt-accordion.ggt-style2 .ggt-panel .ggt-panel-title::after,
+.ggt-accordion.ggt-style3 .ggt-panel .ggt-panel-title::after {
+    -webkit-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -moz-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+}
+
+/* ----- Accordion Style 1 ------ */
+
+.ggt-accordion.ggt-style1 .ggt-panel {
+    background: #FFFFFF;
+    border-bottom: 1px solid #f6f6f6;
+    -webkit-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -moz-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+}
+.ggt-accordion.ggt-style1 .ggt-panel:hover,
+.ggt-accordion.ggt-style1 .ggt-panel.ggt-active {
+    -webkit-transform: scale(1.02);
+    -moz-transform: scale(1.02);
+    transform: scale(1.02);
+    -webkit-box-shadow: 0px 0 20px -4px rgba(0,0,0,.1);
+    -moz-box-shadow: 0px 0 20px -4px rgba(0,0,0,.1);
+    box-shadow: 0px 0 20px -4px rgba(0,0,0,.1);
+}
+.ggt-accordion.ggt-style1 .ggt-panel .ggt-panel-content {
+    background: #000000;
+}
+.ggt-accordion.ggt-style1 .ggt-panel:hover .ggt-panel-title,
+.ggt-accordion.ggt-style1 .ggt-panel.ggt-active .ggt-panel-title {
+    background: #000000;
+    color: #FFFFFF;
+}
+
+/* ----- Accordion Style 2 ------ */
+
+.ggt-accordion.ggt-style2 .ggt-panel {
+    border: 2px solid #000;
+    -webkit-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -moz-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    overflow: hidden;
+}
+.ggt-accordion.ggt-style2 .ggt-panel .ggt-panel-title {
+    background: #ffffff;
+    color: #000000;
+    -webkit-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -moz-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+}
+.ggt-accordion.ggt-style2 .ggt-panel .ggt-panel-title::before,
+.ggt-accordion.ggt-style2 .ggt-panel .ggt-panel-title::after {
+    background: #999999;
+    -webkit-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -moz-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+}
+.ggt-accordion.ggt-style2 .ggt-panel .ggt-panel-content {
+    background: #000000;
+    color: #999999;
+}
+.ggt-accordion.ggt-style2 .ggt-panel:hover .ggt-panel-title,
+.ggt-accordion.ggt-style2 .ggt-panel.ggt-active .ggt-panel-title {
+    color: #fff;
+    background: #000000;
+}
+.ggt-accordion.ggt-style2 .ggt-panel:hover .ggt-panel-title:after,
+.ggt-accordion.ggt-style2 .ggt-panel.ggt-active .ggt-panel-title:after {
+    background: #FFFFFF;
+    transform: none;
+}
+
+/* ----- Accordion Style 3 ------ */
+
+.ggt-accordion.ggt-style3 .ggt-panel .ggt-panel-title::before {
+    content: "";
+    background: #000;
+    position: absolute;
+    left: 0;
+    top: 80px;
+    right: 0;
+    bottom: 0;
+    -webkit-transform: rotate(-5deg);
+    -moz-transform: rotate(-5deg);
+    transform: rotate(-5deg);
+    opacity: 1;
+    height: 40px;
+    -webkit-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -moz-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    z-index: -1;
+}
+.ggt-accordion.ggt-style3 .ggt-panel:hover .ggt-panel-title::before,
+.ggt-accordion.ggt-style3 .ggt-panel.ggt-active .ggt-panel-title::before {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+    height: 100px;
+    top: 0;
+    z-index: -1;
+}
+.ggt-accordion.ggt-style3 .ggt-panel .ggt-panel-title {
+    color: #000000;
+    overflow: hidden;
+    z-index: 1;
+}
+.ggt-accordion.ggt-style3 .ggt-panel:hover .ggt-panel-title {
+    color: #FFFFFF;
+}
+.ggt-accordion.ggt-style3 .ggt-panel.ggt-active .ggt-panel-title {
+    color: #FFFFFF;
+}
+.ggt-accordion.ggt-style3 .ggt-panel .ggt-panel-content {
+    background: #000000;
+}
+
+
+/* Banner */
+
+
+.ggt-banner::before {
+    -webkit-transition: all 1s cubic-bezier(0.37, 0.31, 0.2, 0.85)s;
+    -moz-transition: all 1s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all 1s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+}
+.ggt-banner:hover::before {
+    -webkit-box-shadow: -20px 0 30px 20px #000 inset;
+    -moz-box-shadow: -20px 0 30px 20px #000 inset;
+    box-shadow: -20px 0 30px 20px #000 inset;
+}
+.ggt-banner .ggt-image {
+    -webkit-transition: all 1s cubic-bezier(0.37, 0.31, 0.2, 0.85)s;
+    -moz-transition: all 1s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all 1s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+}
+.ggt-banner:hover .ggt-image {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.ggt-banner .ggt-image-overlay {
+    background: #000000;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -moz-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+}
+.ggt-banner:hover .ggt-image-overlay {
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    transform: scale(1.5);
+}
+.banner-title {
+    -webkit-transition: all 1.5s cubic-bezier(0.37, 0.31, 0.2, 0.85)s;
+    -moz-transition: all 1.5s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all 1.5s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+}
+.banner-subtitle {
+    -webkit-transition: all 1s cubic-bezier(0.37, 0.31, 0.2, 0.85)s;
+    -moz-transition: all 1s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all 1s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    font-family: lato;
+    text-transform: uppercase;
+}
+.ggt-banner-name::before {
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    color: #fff;
+    -webkit-transition: all 1s cubic-bezier(0.37, 0.31, 0.2, 0.85)s;
+    -moz-transition: all 1s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all 1s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+}
+.ggt-banner-description span {
+    color: #FFFFFF;
+    -webkit-transition: all .9s cubic-bezier(0.37, 0.31, 0.2, 0.85)s;
+    -moz-transition: all .9s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all .9s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+}
+
+
+
+/* Button */
+
+.ggt-container .ggt-button {
+    border: 0px solid;
+    -webkit-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -moz-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+}
+.ggt-button::before {
+    border-style: solid;
+    border-top-color: rgba(0,0,0,0);
+    border-bottom-color: rgba(0,0,0,0);
+    border-right-color: rgba(0,0,0,0);
+    border-width: 3px 0 3px 6px;
+    content: "";
+    height: 0;
+    left: 20px;
+    opacity: 0;
+    position: absolute;
+    top: 17px;
+    -webkit-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -moz-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    width: 0;
+}
+.ggt-button:hover::before {
+    left: 12px;
+    opacity: 1;
+}
+.ggt-button::after {
+    -webkit-transform: rotate(15deg);
+    -moz-transform: rotate(15deg);
+    transform: rotate(15deg);
+    -webkit-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -moz-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+}
+.button-line:nth-child(2) .ggt-button {
+
+}
+
+/* Call to Action */
+
+
+
+
+/* Carousel */
+
+/* Clients */
+
+
+.ggt-client-name {
+    background: #fff;
+    -webkit-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    -moz-transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+    transition: all .3s cubic-bezier(0.37, 0.31, 0.2, 0.85);
+}
+
+
+/* Counters */
+
+/* Headings */
+
+/* Info Box */
+
+/* Pie Charts */
+
+/* Portfolio */
+
+/* Post Loop */
+
+.ggt-taxonomy-filter {
+    margin: 0 0 20px 0px;
+}
+.ggt-post-loop-wrap .ggt-filter-item a {
+    padding: 0px 3px;
+    display: block;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 3px;
+    position: relative;
+}
+.ggt-post-loop-wrap .ggt-filter-item a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #000;
+    height: 2px;
+    right: 100%;
+    -webkit-transition: all .2s cubic-bezier(0.37,0.31,0.2,0.85);
+    -moz-transition: all .2s cubic-bezier(0.37,0.31,0.2,0.85);
+    transition: all .2s cubic-bezier(0.37,0.31,0.2,0.85);
+}
+.ggt-post-loop-wrap .ggt-filter-item a:hover::before,
+.ggt-post-loop-wrap .ggt-filter-item.ggt-active a::before {
+    right: 0;
+}
+/* Post-carousel */
+
+/* Pricing-table */
+
+/* Recent-posts */
+
+/* Services */
+
+/* Spacer */
+
+/* Stats Bar */
+
+/* Tabs */
+
+/* Team */
+
+/* Testimonials */
+
+/* Testimonials Slider */

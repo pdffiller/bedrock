@@ -1,0 +1,539 @@
+/*-----------------------------------------------
+
+    Theme:	WPblog Theme
+    Author:	GoGetThemes.com
+    Version:	1.0
+
+    TABLE OF CONTENTS:
+
+    1.0 Header Type 2
+    2.0 Header office styles
+    3.0 Header Type 2 Responsive
+
+
+-----------------------------------------------*/
+
+/*-------------------------------
+    1.0 Header Type 2
+--------------------------------*/
+
+.container-margin {
+    background: #FFFFFF;
+    margin: 0 30px;
+}
+.transparent .header-action {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+.header-is-sticky .header-action {
+    position: fixed;
+    -webkit-transition: all 0.5s ease-in-out 0s;
+    -moz-transition: all 0.5s ease-in-out 0s;
+    transition: all 0.5s ease-in-out 0s;
+    width: 100%;
+    /*padding: 20px;*/
+    z-index: 999;
+}
+.header-type-3 .container-fullwidth {
+    width: 100%;
+    display: inline-block;
+}
+.header-type-3 {
+    width: 65%;
+    text-align: left;
+}
+.header-type-3-top-header {
+    padding: 0px;
+    display: inline-block;
+    float: left;
+    margin: 0;
+    width: 100%;
+}
+.header-type-3-container {
+    display: inline;
+}
+.nav-menu, .nav-menu ul {
+    float: right;
+}
+.header-type-3 .container-fullwidth > div {
+    display: inline-block;
+    vertical-align: middle;
+}
+.header-type-3-top-header > .container-fullwidth {
+    padding: 5px 0;
+}
+.header-type-3 .header-logo img {
+}
+.header-type-3 .container-fullwidth {
+    display: inline-block;
+}
+.header-type-3 .header-buttons a {
+    -webkit-transition: all 0.2s ease-in-out 0s;
+    -moz-transition: all 0.2s ease-in-out 0s;
+    transition: all 0.2s ease-in-out 0s;
+}
+.header-type-3 .header-buttons i {
+    font-size: 15px;
+}
+.header-type-3 .header-logo {
+    display: inline-block;
+    padding: 10px 0;
+    text-align: center;
+    width: 15%;
+}
+
+.header-type-3 .header-buttons > a {
+    position: relative;
+}
+.header-type-3 .total-info {
+    color: #999;
+    font-family: open sans;
+    font-size: 13px;
+    font-weight: 600;
+    left: 3px;
+    position: relative;
+    width: 22px;
+}
+.nav-menu ul li a {
+    color: #000;
+    display: inline-block;
+    opacity: 1;
+}
+.nav-menu ul li a:last-child {
+    border-right: 0px solid rgba(0,0,0,.1);
+}
+.header-type-3.main-header {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    padding: 0;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.header-logo-left-block {
+    display: inline-block;
+    width: 20%;
+    text-align: right;
+    padding: 0px 0px 0px 30px;
+}
+.header-logo-right-block {
+    display: inline-block;
+    vertical-align: middle;
+    width: 19%;
+    text-align: right;
+}
+.header-menu {
+    display: inline-block;
+    padding: 0 30px;
+    vertical-align: middle;
+}
+.header-buttons > a {
+    display: inline-block;
+    height: 70px;
+    line-height: 70px;
+    margin: -1px -2px !important;
+    text-align: center;
+    width: 70px;
+}
+
+
+
+
+/*-------------------------------
+    2.0 Header office styles
+--------------------------------*/
+
+.offices-wrap {
+    display: inline-block;
+    padding: 10px 0;
+    vertical-align: middle;
+    width: 78%;
+}
+.offices-content .content-phone,
+.offices-content .content-email,
+.offices-content .content-address {
+    display: inline-block;
+    padding: 0 15px;
+    vertical-align: middle;
+}
+.offices-content div > span {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: 30px;
+    vertical-align: top;
+    width: 100%;
+}
+.offices-tab.active {
+    display: block;
+}
+.offices-tab {
+    display: none;
+}
+.offices-content > div > i {
+    font-size: 14px;
+    line-height: 29px;
+    position: absolute;
+}
+
+#header-selector .hover {
+    position: absolute;
+    -webkit-transform: none;
+    -moz-transform: none;
+    transform: none;
+    visibility: visible;
+    width: 100%;
+    z-index: 10;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+#header-selector:hover div.hover {
+    z-index: -1;
+}
+#header-selector:hover div:not(.hover) {
+    z-index: 11;
+}
+#header-selector div:not(.hover) {
+    z-index: -1;
+}
+.select-top-header:hover:after {
+    -webkit-transform: translateY(-50%) rotate(90deg);
+    -moz-transform: translateY(-50%) rotate(90deg);
+    transform: translateY(-50%) rotate(90deg);
+
+}
+.select-top-header:after {
+
+}
+.select-top-header::after {
+    color: #FFFFFF;
+    content: "\e606";
+    font-family: simple-line-icons;
+    font-size: 13px;
+    position: absolute;
+    right: 13px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-transition: all 0.2s ease-in-out 0s;
+    -moz-transition: all 0.2s ease-in-out 0s;
+    transition: all 0.2s ease-in-out 0s;
+    z-index: 4;
+}
+.select-top-header::before {
+    color: #FFFFFF;
+    content: "";
+    height: 50px;
+    line-height: 50px;
+    margin: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    -webkit-transition: all 0.2s ease-in-out 0s;
+    -moz-transition: all 0.2s ease-in-out 0s;
+    transition: all 0.2s ease-in-out 0s;
+    vertical-align: middle;
+    width: 50px;
+    z-index: 2;
+}
+.select-top-header:hover {
+    box-shadow: 0 5px 20px -7px rgba(0, 0, 0, 0.21);
+}
+.select-top-header {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #000;
+    display: inline-block;
+    float: left;
+    height: 50px;
+    min-width: 150px;
+    position: relative;
+    vertical-align: middle;
+    width: 22%;
+    z-index: 1;
+}
+.select-top-header-toggle {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+}
+.select-top-header-toggle:focus {
+    outline: none;
+}
+.select-top-header-toggle_type_open {
+    bottom: 0;
+}
+.select-top-header-toggle_type_open:focus,
+.select-top-header-toggle_type_close {
+    bottom: auto;
+}
+.select-top-header-toggle_type_open:focus + .select-top-header-toggle_type_close {
+    bottom: 0;
+}
+.select-top-header-input {
+    position: absolute;
+}
+input[type="radio"].select-top-header-input {
+    margin: 4px 2px;
+}
+.select-top-header-options {
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    color: #fff;
+    height: 50px;
+    left: 0;
+    overflow: hidden;
+    padding-top: 50px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+}
+.wpml-block #lang_sel_click ul ul a:hover, .select-top-header-option:hover, .wpml-block #lang_sel_click a.lang_sel_sel:hover{
+    box-shadow: 0 5px 20px -7px rgba(0, 0, 0, 0.21);
+}
+#lang_sel a {
+    border: 0 solid #eee;
+    font-size: 13px;
+    height: auto;
+    line-height: 1em;
+    padding: 10px 15px;
+}
+.wpml-block #lang_sel_click a {
+    text-align: left;
+}
+#lang_sel ul ul a {
+    background: #fff none repeat scroll 0 0;
+    border-width: 0 1px 1px;
+    color: #444444;
+    height: auto;
+    line-height: 1em;
+    padding: 10px 15px;
+}
+#lang_sel ul ul {
+    border: 0 solid;
+    top: 30px;
+}
+
+.select-top-header-options:focus {
+    outline: none;
+}
+.select-top-header-option {
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    height: 50px;
+    line-height: 50px;
+    margin: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    -webkit-transition-duration: 0.25s;
+    transition-duration: 0.25s;
+    -webkit-transition-property: background-color;
+    will-change: background-color;
+}
+
+.select-top-header-option:hover {
+}
+.select-top-header-toggle_type_open:focus ~ .select-top-header-options,
+.select-top-header-options:focus {
+    height: auto;
+}
+.select-top-header-input:nth-child(1):checked ~ .select-top-header-options .select-top-header-option:nth-child(1) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.select-top-header-input:nth-child(2):checked ~ .select-top-header-options .select-top-header-option:nth-child(2) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.select-top-header-input:nth-child(3):checked ~ .select-top-header-options .select-top-header-option:nth-child(3) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.select-top-header-input:nth-child(4):checked ~ .select-top-header-options .select-top-header-option:nth-child(4) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.select-top-header-input:nth-child(5):checked ~ .select-top-header-options .select-top-header-option:nth-child(5) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.select-top-header-input:nth-child(6):checked ~ .select-top-header-options .select-top-header-option:nth-child(6) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.select-top-header-input:nth-child(7):checked ~ .select-top-header-options .select-top-header-option:nth-child(7) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.select-top-header-input:nth-child(8):checked ~ .select-top-header-options .select-top-header-option:nth-child(8) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.select-top-header-input:nth-child(9):checked ~ .select-top-header-options .select-top-header-option:nth-child(9) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.single.select-top-header::before {
+    content: none;
+}
+.single .select-top-header-toggle {
+    cursor: default;
+}
+.offices-wrap.single {
+
+    width: 100%;
+}
+.offices-wrap .offices-content {
+}
+
+.social-icons .socicon {
+    color: #fff;
+    font-size: 15px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    -webkit-transition: all 0.2s ease-in-out 0s;
+    -moz-transition: all 0.2s ease-in-out 0s;
+    transition: all 0.2s ease-in-out 0s;
+    width: 30px;
+}
+.social-icons .socicon:hover {
+    background: #fff none repeat scroll 0 0;
+    color: #383838;
+}
+
+
+
+/*-------------------------------
+    3.0 Header Type 1 Responsive
+--------------------------------*/
+
+
+@media only screen and (max-width: 768px) {
+    .offices-content .content-phone,
+    .offices-content .content-email,
+    .offices-content .content-address {
+        padding: 10px 15px;
+        display: block;
+    }
+    .footer-soc-icons::before {
+        background: rgba(0, 0, 0, 0.1) none repeat scroll 0 0;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        color: #fff;
+        content: "\e05b";
+        display: block;
+        font-family: simple-line-icons;
+        height: 50px;
+        line-height: 50px;
+        position: relative;
+        right: -10px;
+        text-align: center;
+        top: 0;
+        width: 50px;
+    }
+    .mobile-collapse {
+        display: block;
+        padding: 30px 0px;
+    }
+    #tab-content > div {
+        display: block;
+    }
+    #header-selector {
+        display: none;
+    }
+    .mobile-collapse {
+        display: none;
+    }
+    .mobile-top-header-btn{
+        display: block;
+    }
+    .select-top-header {
+        width: 100%;
+    }
+    .wpml-block {
+        margin-left: 10px;
+    }
+    .social-block {
+        height: 40px;
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+    .social-icons {
+        padding: 0 10px 0 0;
+        border-right: 1px solid rgba(255, 255, 255, 0);
+        margin: 0;
+    }
+
+    .social-label {
+        display: none;
+    }
+    .wpml-block {
+        display: block;
+        float: left;
+        height: 70px;
+        margin: 0 auto;
+        width: 150px;
+    }
+    .offices-wrap {
+        width: 100%;
+    }
+    .offices-content div > span {
+        font-size: 13px;
+    }
+    .blog .wrapper {
+        psdding-top: 15px;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    .offices-content .content-phone,
+    .offices-content .content-email,
+    .offices-content .content-address {
+        padding: 10px 15px;
+        display: block;
+    }
+}
+@media only screen and (max-width: 1280px) {
+    .header-type-3 {
+        width: 56%;
+    }
+    .header-logo-right-block {
+        width: 28%;
+    }
+}
+
