@@ -67,11 +67,11 @@ class ESSBCountersHelper {
 				}
 				break;
 			case 'google':
-				if (essb_option_value('google_counter_type') == 'self') {
-					$count = self::getSelfPostCount($postID, $network);
+				if (essb_option_value('google_counter_type') == 'api') {
+					$count = self::getGplusShares($url);
 				}
 				else {
-					$count = self::getGplusShares($url);
+					$count = self::getSelfPostCount($postID, $network);
 				}
 				break;
 			case 'reddit':
@@ -100,7 +100,7 @@ class ESSBCountersHelper {
 				$count = self::get_comments_count($postID);
 				break;
 			case 'linkedin':
-				$count = self::get_linkedin($url);
+				$count = self::getSelfPostCount($postID, $network); //  self::get_linkedin($url);
 				break;
 			default:
 				$count = self::getSelfPostCount($postID, $network);
@@ -387,6 +387,15 @@ class ESSBCountersHelper {
 	
 	public static function get_tweets_newsc($url) {
 		$json_string = self::parse  ( 'https://public.newsharecounts.com/count.json?url=' . $url );
+		$json = json_decode ( $json_string, true );
+		$result = isset ( $json ['count'] ) ? intval ( $json ['count'] ) : 0;
+		
+		return $result;
+	}
+	
+	public static function get_tweets_twitcount($url) {
+		//
+		$json_string = self::parse  ( 'https://counts.twitcount.com/counts.php?url=' . $url );
 		$json = json_decode ( $json_string, true );
 		$result = isset ( $json ['count'] ) ? intval ( $json ['count'] ) : 0;
 		

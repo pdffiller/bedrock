@@ -13,12 +13,17 @@ jQuery(document).ready(function($){
 		
 		if (!$(base_element).length) return;
 		
-		var singleDisplay = $(base_element).attr('data-single') || '';
+		var singleDisplay = $(base_element).attr('data-single') || '',
+			singleDisplayDelay = $(base_element).attr('data-single-days') || '';
+		
 		if (singleDisplay == '1') {
 			var cookie_name = "essbOptinBooster";
 			var cookieSet = essbGetCookie(cookie_name);
 			if (cookieSet == "yes") { return; }
-			essbSetCookie(cookie_name, "yes", 14);
+			
+			singleDisplayDelay = (singleDisplayDelay == '' || !Number(singleDisplayDelay)) ? 14 : Number(singleDisplayDelay);
+			
+			essbSetCookie(cookie_name, "yes", singleDisplayDelay);
 		}
 		
 		jQuery.fn.extend({
@@ -70,8 +75,25 @@ jQuery(document).ready(function($){
 		}
 	}
 	
-	if ($('.essb-optinbooster-exit'))
-		$(document).mouseout(essb_booster_exit);
+	
+	
+	if ($('.essb-optinbooster-exit')) {
+		// Exit intent
+		function addEvent(obj, evt, fn) {
+		  if (obj.addEventListener) {
+		    obj.addEventListener(evt, fn, false);
+		  } else if (obj.attachEvent) {
+		    obj.attachEvent("on" + evt, fn);
+		  }
+		}
+
+		// Exit intent trigger
+		addEvent(document, 'mouseout', function(evt) {
+		  if (evt.toElement === null && evt.relatedTarget === null) {
+			  essb_optin_booster_show('exit');
+		  }
+		});	
+	}
 	
 	var essb_booster_scroll = function() {
 		if (optin_triggered) { return; }

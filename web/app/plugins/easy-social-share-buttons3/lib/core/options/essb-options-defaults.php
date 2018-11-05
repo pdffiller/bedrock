@@ -167,7 +167,10 @@ if (!function_exists('essb_available_social_networks')) {
 				'share' => array( 'name' => 'Share', 'type' => 'buildin', 'supports' => 'desktop,mobile,retina templates only'),
 				'livejournal' => array( 'name' => 'LiveJournal', 'type' => 'buildin', 'supports' => 'desktop,mobile,retina templates only'),
 				'yammer' => array( 'name' => 'Yammer', 'type' => 'buildin', 'supports' => 'desktop,mobile,retina templates only'),
-				'meetedgar' => array('name' => 'Edgar', 'type' => 'buildin', 'supports' => 'desktop,mobile,retina templates only')
+				'meetedgar' => array('name' => 'Edgar', 'type' => 'buildin', 'supports' => 'desktop,mobile,retina templates only'),
+				'fintel' => array('name' => 'Fintel', 'type' => 'buildin', 'supports' => 'desktop,mobile,retina templates only'),
+				'mix' => array('name' => 'Mix', 'type' => 'buildin', 'supports' => 'desktop,mobile,retina templates only'),
+				'instapaper' => array('name' => 'Instapaper', 'type' => 'buildin', 'supports' => 'desktop,mobile,retina templates only')
 		);
 		
 		if (has_filter('essb4_social_networks')) {

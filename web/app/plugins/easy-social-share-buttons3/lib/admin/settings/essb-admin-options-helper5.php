@@ -97,6 +97,11 @@ if (!function_exists('essb5_available_button_positions')) {
 		if (!essb_options_bool_value('deactivate_method_booster')) {
 			$essb_available_button_positions ['booster'] = array ('image' => 'assets/images/display-positions-28.png', 'label' => 'Share Booster', 'link' => 'essb-menu-display|essb-menu-display-20' );
 		}
+
+		if (!essb_options_bool_value('deactivate_method_sharebutton')) {
+			$essb_available_button_positions ['sharebutton'] = array ('image' => 'assets/images/display-positions-29.png', 'label' => 'Share Button', 'link' => 'essb-menu-display|essb-menu-display-21' );
+		}
+		
 		
 		$essb_available_button_positions ['widget'] = array ('image' => 'assets/images/display-positions-25.png', 'label' => 'Widget' );
 
@@ -748,7 +753,7 @@ class ESSBOptionsStructureHelper {
 		);
 	}
 	
-	public static function field_toggle_panel ($tab_id, $menu_id, $id, $title, $description, $values, $recommended = '', $size = '') {
+	public static function field_toggle_panel ($tab_id, $menu_id, $id, $title, $description, $values, $recommended = '', $size = '', $extra_class = '') {
 		global $essb_navigation_tabs, $essb_sidebar_sections, $essb_section_options;
 		$essb_section_options[$tab_id][$menu_id][] = array(
 				'id' => $id,
@@ -757,7 +762,7 @@ class ESSBOptionsStructureHelper {
 				'description' => $description,
 				'recommeded' => $recommended,
 				'values' => $values,
-				'element_options' => array('size' => $size)
+				'element_options' => array('size' => $size, 'extra_class' => $extra_class)
 		);
 	}
 	

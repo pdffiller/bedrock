@@ -142,6 +142,10 @@ class ESSBSocialFollowersCounter {
 			}
 		}
 		
+		if (!$request_update && isset($_GET['update_followers'])) {
+			$request_update = true;
+		}
+		
 		if ($request_update) {
 			$counters = $this->update_all_followers();
 		}
@@ -177,7 +181,7 @@ class ESSBSocialFollowersCounter {
 	 * @since 3.4
 	 */
 	public function update_all_followers() {
-		$counters = array();
+		$counters = array();		
 		
 		$require_check_in_cache = false;
 		foreach ( $this->active_social_networks() as $social ) {
@@ -299,6 +303,7 @@ class ESSBSocialFollowersCounter {
 				case 'tripadvisor':
 				case 'snapchat':
 				case 'telegram':
+				case 'subscribe':
 					$count = $this->update_manual_value($social);
 					break;
 				default :
@@ -346,6 +351,10 @@ class ESSBSocialFollowersCounter {
 		}
 		
 		$expire_time = ESSBSocialFollowersCounterHelper::get_option ( 'update' );
+		
+		if ($expire_time == '' || intval($expire_time) == 0) {
+			$expire_time = 1440;
+		}
 		
 		update_option ( $this->essb3_cache_option_name, $counters );
 		update_option ( $this->essb3_expire_name, (time () + ($expire_time * 60)) );
@@ -421,6 +430,7 @@ class ESSBSocialFollowersCounter {
 			case 'tripadvisor':
 			case 'snapchat':
 			case 'telegram':
+			case 'subscribe':
 				return ESSBSocialFollowersCounterHelper::get_option ( $social . '_url' );
 				break;
 			default :
@@ -601,6 +611,7 @@ class ESSBSocialFollowersCounter {
 				case 'tripadvisor':
 				case 'snapchat':
 				case 'telegram':
+				case 'subscribe':
 					return ESSBSocialFollowersCounterHelper::get_option ( $social . '_url' );
 					break;				
 		}

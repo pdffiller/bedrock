@@ -10,15 +10,20 @@
  */
 
 
-
 class ESSBButtonHelper {
-	
-	
-	
-	public static function draw_share_buttons($share = array(), $style = array(), $networks = array(), 
+	public static function draw_share_buttons($share = array(), $style = array(), $networks = array(),
 			$networks_order = array(), $network_names = array(),
 			$position = '', $salt = '', $like_or_share = 'share', $native_buttons = '') {
 		
+		return essb_draw_share_buttons($share, $style, $networks, $networks_order, $network_names,
+				$position, $salt, $like_or_share, $native_buttons);
+	}
+}
+
+
+function essb_draw_share_buttons($share = array(), $style = array(), $networks = array(), 
+			$networks_order = array(), $network_names = array(),
+			$position = '', $salt = '', $like_or_share = 'share', $native_buttons = '') {		
 		
 		$content = '';		
 		$share['salt'] = $salt;	
@@ -70,6 +75,10 @@ class ESSBButtonHelper {
 		$button_follow_state = 'nofollow';
 		if (ESSBGlobalSettings::$use_rel_me) {
 			$button_follow_state = 'me';
+		}
+		
+		if (has_filter('essb_share_link_rel')) {
+			$button_follow_state = apply_filters('essb_share_link_rel', $button_follow_state);
 		}
 		
 		if (isset($style['more_button_icon'])) {
@@ -296,7 +305,11 @@ class ESSBButtonHelper {
 					$link_target = '_self';
 				}
 				
-				if ($single_share_address == 'mail' || $single_share_address == 'line' || $single_share_address == 'whatsapp') {
+				if ($single_share_address == 'mail' || $single_share_address == 'line') {					
+					$link_target = '_self';
+				}
+				
+				if ($single_share_address == 'whatsapp' && !essb_option_bool_value('whatsapp_api')) {
 					$link_target = '_self';
 				}
 				
@@ -394,9 +407,7 @@ class ESSBButtonHelper {
 		return $content;
 	}
 	
-	
 
-}
 
 function essb_get_share_address($network, $share = array(), $salt = '', $amp_endpoint = false, $is_mobile = false) {
 
@@ -443,7 +454,11 @@ function essb_get_share_address($network, $share = array(), $salt = '', $amp_end
 	$share['title'] = esc_attr($share['title']);
 	$share['image'] = esc_attr($share['image']);
 	$share['description'] = esc_attr($share['description']);
-
+	
+	// adding additional support for hashtags everywhere
+	$share['title'] = str_replace('#', '%23', $share['title']);
+	$share['description'] = str_replace('#', '%23', $share['description']);
+	
 	if (isset($share['mail_subject'])) {
 		$share['mail_subject'] = esc_attr(stripslashes($share['mail_subject']));
 	}
@@ -484,12 +499,12 @@ function essb_get_share_address($network, $share = array(), $salt = '', $amp_end
 			
 			$close_callback = get_bloginfo('url') . '?sharing-thankyou=yes';
 			
-			$url = sprintf ( 'https://www.facebook.com/sharer/sharer.php?u=%1$s&t=%2$s&redirect_uri=%3$s', $share ['url'], $share ['title'], $close_callback );
+			$url = sprintf ( 'https://www.facebook.com/sharer/sharer.php?u=%1$s&t=%2$s', $share ['url'], $share ['title'], $close_callback );
 			break;
 
 		case 'facebook_advanced':
 			$fbappid = essb_options_value( 'facebookadvancedappid');
-			$url = 'https://www.facebook.com/dialog/feed?app_id='.$fbappid.'&amp;display=popup&amp;name='.$share['title'].'&amp;link='.$share['url'].'&amp;redirect_uri=https://www.facebook.com';
+			$url = 'https://www.facebook.com/dialog/feed?app_id='.$fbappid.'&amp;display=popup&amp;name='.$share['title'].'&amp;link='.$share['url'].'';
 
 			if ($share['image'] != '') {
 				$url .= '&picture='.$share['image'];
@@ -506,10 +521,11 @@ function essb_get_share_address($network, $share = array(), $salt = '', $amp_end
 			if (isset($share['clear_twitter_url'])) {
 				if ($share['clear_twitter_url']) { $share['short_url_twitter'] = ''; }
 			}
-
+			
 			$use_tweet = $share ['twitter_tweet'];
 			$use_tweet = str_replace('#', '%23', $use_tweet);
 			$use_tweet = str_replace('|', '%7C', $use_tweet);
+			$use_tweet = str_replace('&', '%26', $use_tweet);
 
 			// @since 3.1 Twitter message optimization
 			$twitter_message_optimize = ESSBGlobalSettings::$twitter_message_optimize;//ESSBOptionValuesHelper::options_bool_value($essb_options, 'twitter_message_optimize');
@@ -605,6 +621,13 @@ function essb_get_share_address($network, $share = array(), $salt = '', $amp_end
 
 			$url = sprintf ( 'whatsapp://send?text=%1$s%3$s%2$s', essb_core_helper_urlencode ( $share ['title_plain'] ), rawurlencode ( $share ['short_url_whatsapp'] ), '%20' );
 			$api_command = "essb.tracking_only('', 'whatsapp', '".$salt."', true);";
+			
+			if (essb_option_bool_value('whatsapp_api')) {
+				$url = sprintf ( 'https://api.whatsapp.com/send?text=%1$s%3$s%2$s', essb_core_helper_urlencode ( $share ['title_plain'] ), rawurlencode ( $share ['short_url_whatsapp'] ), '%20' );
+				$api_command = "essb.tracking_only('', 'whatsapp', '".$salt."', true);";
+				
+			}
+			
 			break;
 		case 'meneame' :
 			$url = sprintf ( 'http://www.meneame.net/submit.php?url=%1$s', $share ['url'] );
@@ -702,7 +725,8 @@ function essb_get_share_address($network, $share = array(), $salt = '', $amp_end
 			break;
 		case 'line':
 			//$url = sprintf('http://line.me/R/msg/text/%1$s%20%2$s', essb_core_helper_urlencode ( $share ['title'] ), rawurlencode ( $share ['short_url_whatsapp'] ));
-			$url = sprintf('line://msg/text/%1$s%3$s%2$s', essb_core_helper_urlencode ( $share ['title_plain'] ), rawurlencode ( $share ['short_url_whatsapp'] ), '%20');
+			//$url = sprintf('line://msg/text/%1$s%3$s%2$s', essb_core_helper_urlencode ( $share ['title_plain'] ), rawurlencode ( $share ['short_url_whatsapp'] ), '%20');
+			$url = 'https://social-plugins.line.me/lineit/share?url='.rawurlencode($share['url']);
 			$api_command = "essb.tracking_only('', 'line', '".$salt."', true);";
 
 			break;
@@ -788,6 +812,15 @@ function essb_get_share_address($network, $share = array(), $salt = '', $amp_end
 			$url = htmlentities('javascript:(function()%7B!function()%7Bvar e%3Ddocument.getElementsByTagName("head")%5B0%5D,t%3Ddocument.createElement("script")%3Bt.type%3D"text/javascript",t.src%3D"//app.meetedgar.com/share.js%3F"%2BMath.floor(99999*Math.random()),e.appendChild(t)%7D()%7D)()%3B');
 			$api_command = "essb.tracking_only('', 'meetedgar', '".$salt."', true);";
 			break;
+		case 'fintel':
+			$url = sprintf('https://fintel.io/submit?url=%1$s', $share ['url']);
+			break;
+		case 'instapaper':
+			$url = sprintf('https://www.instapaper.com/hello2?url=%1$s&title=%2$s&description=%3$s', $share ['url'], $share['title'], $share['description']);
+			break;			
+		case 'mix':
+			$url = sprintf('https://mix.com/extension/add?source=%1$s', $share ['url']);
+			break;
 		default:
 			// @since 3.0 - module parsing social buttons or custom social buttons
 			if (has_filter("essb4_shareapi_api_command_{$network}")) {
@@ -797,6 +830,14 @@ function essb_get_share_address($network, $share = array(), $salt = '', $amp_end
 				$url = apply_filters("essb4_shareapi_url_{$network}", $share);
 			}
 			break;
+	}
+	
+	if (has_filter("essb_shareapi_command_{$network}")) {
+		$api_command = apply_filters("essb_shareapi_command_{$network}", $share);
+	}
+	
+	if (has_filter("essb_shareapi_url_{$network}")) {
+		$url = apply_filters("essb_shareapi_url_{$network}", $share);
 	}
 
 	if ($api_command == '') {
@@ -812,8 +853,17 @@ function essb_get_share_address($network, $share = array(), $salt = '', $amp_end
 		$url = str_replace ('&', '&amp;', $url);
 		//print $url;
 	}
+	
+	
+	$share_command = array('url' => $url, 'api_command' => $api_command);
 
-	return array('url' => $url, 'api_command' => $api_command);
+	// @since 5.5 - adding a global share generation filter that will make possible to change the execution
+	// of all build in social networks and modify the custom generated share URL 
+	if (has_filter("essb_share_command_{$network}")) {
+		$share_command = apply_filters("essb_share_command_{$network}", $share_command);
+	}
+
+	return $share_command;
 }
 
 
@@ -892,6 +942,12 @@ function essb_draw_buttons_start($style = array(), $position = '', $salt = '', $
 
 	if ($style['button_width'] == 'flex') {
 		$css_class_width .= ' essb_width_flex';
+	}
+	
+	if (isset($style['button_size'])) {
+		if ($style['button_size'] != '') {
+			$css_class_width .= ' essb_size_'.$style['button_size'];
+		}
 	}
 
 	$css_class_align = '';
@@ -1061,13 +1117,21 @@ function essb_draw_buttons_start($style = array(), $position = '', $salt = '', $
 			$counter_full_url = str_replace('{title}', '', $counter_full_url);
 		}
 	}
+	
+	$extra_start_options = '';
+	
+	$buttons_id = 'essb_displayed_'.$position.'_'.$salt;
+	
+	if (has_filter('essb_sharebuttons_draw_id')) {
+		$buttons_id = apply_filters('essb_sharebuttons_draw_id', $buttons_id, $style);
+	}
 
 	$links_start = sprintf ( '<div class="essb_links%1$s%2$s essb_displayed_%3$s%4$s%5$s essb_%6$s%13$s%14$s%15$s%16$s print-no"
-			id="essb_displayed_%3$s_%6$s" data-essb-postid="%7$s" data-essb-position="%3$s" data-essb-button-style="%8$s"
+			id="'.$buttons_id.'" data-essb-postid="%7$s" data-essb-position="%3$s" data-essb-button-style="%8$s"
 			data-essb-template="%9$s" data-essb-counter-pos="%10$s" data-essb-url="%11$s" data-essb-twitter-url="%12$s" data-essb-instance="%6$s">',
 			$counter_class, $essb_css_modern_counter_class, $key_position, $like_share_position, $template, $salt,
 			$share['post_id'], $style['button_style'], $instance_template, $style['counter_pos'], $counter_url, $counter_full_url, $css_class_width,
-			$css_class_align, $css_class_nospace, $css_class_nostats );
+			$css_class_align, $css_class_nospace, $css_class_nostats, $extra_start_options );
 
 	$deactivate_message_for_location = essb_options_bool_value( $position.'_text_deactivate');
 	//@since 3.4.2 - deactivate message before share buttons on mobile display methods

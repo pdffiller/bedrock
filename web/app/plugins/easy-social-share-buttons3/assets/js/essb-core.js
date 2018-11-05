@@ -211,7 +211,9 @@ jQuery(document).ready(function($){
 			
 		}
 	
-		essb_self_postcount(service, instance_post_id);
+		if (typeof(essb_settings) != 'undefined') {			
+			if (typeof(essb_settings.stop_postcount) == 'undefined') essb_self_postcount(service, instance_post_id);
+		}
 	
 		if (typeof(essb_abtesting_logger) != "undefined") 
 			essb_abtesting_logger(service, instance_post_id, instance);
@@ -483,6 +485,20 @@ jQuery(document).ready(function($){
 		$('.essb-subscribe-form-' + key).fadeOut(400);
 		$('.essb-subscribe-form-overlay-' + key).fadeOut(400);
 	}
+	
+	essb.sharebutton = function(key) {
+		if ($('.essb-windowcs-'+key).length) {
+			
+			$('.essb-windowcs-'+key).fadeIn(200);
+			$('.essb-windowcs-'+key+' .inner-content').center();
+		}
+	}
+	
+	essb.sharebutton_close = function(key) {
+		if ($('.essb-windowcs-'+key).length) {			
+			$('.essb-windowcs-'+key).fadeOut(200);
+		}
+	}
 
 	essb.toggle_subscribe = function(key) {
 		// subsribe container do not exist
@@ -538,6 +554,29 @@ jQuery(document).ready(function($){
 		var usedPosition = $(positionContainer).attr('data-position') || '';
 		
 		if (formContainer.length) {
+			// Additional check for require agree to terms check
+			if ($(formContainer).find('.essb-subscribe-confirm').length) {
+				var state = $(formContainer).find('.essb-subscribe-confirm').is(":checked");
+				if (!state) {
+					
+					if (essb_settings.subscribe_terms_error)
+						alert(essb_settings.subscribe_terms_error);
+					else
+						alert('You need to confirm that you agree with our terms');
+					return;
+				}
+			}
+			
+			if ($(formContainer).find('.essb-subscribe-form-content-name-field').length && essb_settings.subscribe_validate_name) {
+				if ($(formContainer).find('.essb-subscribe-form-content-name-field').val() == '') {
+					if (essb_settings.subscribe_validate_name_error)
+						alert(essb_settings.subscribe_validate_name_error);
+					else
+						alert('You need to fill name field too');
+					return;
+				}
+			}
+			
 			var user_mail = $(formContainer).find('.essb-subscribe-form-content-email-field').val();
 			var user_name = $(formContainer).find('.essb-subscribe-form-content-name-field').length ? $(formContainer).find('.essb-subscribe-form-content-name-field').val() : '';
 			$(formContainer).find('.submit').prop('disabled', true);
@@ -679,6 +718,8 @@ jQuery(document).ready(function($){
 	
 	essb.update_facebook_counter = function(url, recovery_url) {
 		
+		if( (/bot|crawl|slurp|spider/i).test(navigator.userAgent) ) return;
+		
 		$.when($.get('https://graph.facebook.com/?fields=og_object{likes.summary(true).limit(0)},share&id=' + url) ,
 				( recovery_url ? $.get('https://graph.facebook.com/?fields=og_object{likes.summary(true).limit(0)},share&id=' + recovery_url) : '')
 		).then( function( counter, recovery_counter ) {
@@ -720,6 +761,8 @@ jQuery(document).ready(function($){
 	}
 	
 	essb.update_pinterest_counter = function(url, recovery_url) {
+		if( (/bot|crawl|slurp|spider/i).test(navigator.userAgent) ) return;
+		
 		$.get('https://api.pinterest.com/v1/urls/count.json?callback=?&url=' + url, {
 		}, function (data) { 
 			var total_shares1 = data['count'] ? data['count'] : 0; 
@@ -1061,8 +1104,12 @@ jQuery(document).ready(function($){
 			}
 		}
 		
-		if ((essb_settings.sidebar_disappear_pos || '') != '' || (essb_settings.sidebar_appear_pos || '') != '')
-			$(window).scroll(debounce(essb_sidebar_onscroll, 1));
+		if ((essb_settings.sidebar_disappear_pos || '') != '' || (essb_settings.sidebar_appear_pos || '') != '') {
+			
+			if ($( window ).width() > 800) {
+				$(window).scroll(debounce(essb_sidebar_onscroll, 1));
+			}
+		}
 		
 		/**
 		 * Display Method: Post Bar
@@ -1952,6 +1999,50 @@ jQuery(document).ready(function($){
 		}
 		if (essb_settings['pinterest_client']) {
 			essb.update_pinterest_counter(essb_settings['facebook_post_url'] || '', essb_settings['facebook_post_recovery_url'] || '');
+		}
+		
+		/**
+		 * Click2Chat
+		 */
+		if ($('.essb-click2chat').length) {
+			$('.essb-click2chat').click(function(event) {
+				event.preventDefault();				
+				
+				$('.essb-click2chat-window').toggleClass('active');
+			});
+			
+			if ($('.essb-click2chat-window .chat-close').length) {
+				$('.essb-click2chat-window .chat-close').click(function(event) {
+					event.preventDefault();				
+					
+					$('.essb-click2chat-window').toggleClass('active');
+				});
+			}
+			
+			$('.essb-click2chat-window .operator').each(function() {
+				$(this).click(function(event) {
+					event.preventDefault();
+					
+					var app = $(this).attr('data-app') || '',
+						number = $(this).attr('data-number') || '',
+						message = $(this).attr('data-message') || '',
+						cmd = '';
+										
+					var instance_mobile = false;
+					if( (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i).test(navigator.userAgent) ) {
+						instance_mobile = true;
+					}
+					
+					if (app == 'whatsapp') {
+						cmd = 'https://api.whatsapp.com/send?phone='+number+'&text=' + message;
+					}
+					if (app == 'viber') {
+						cmd = 'viber://chat?number='+number+'&text=' + message;
+					}
+					window.location.href = cmd;
+					
+				});
+			});
 		}
 	});
 	

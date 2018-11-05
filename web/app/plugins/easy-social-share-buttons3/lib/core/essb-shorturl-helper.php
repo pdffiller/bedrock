@@ -57,7 +57,7 @@ function essb_short_rebrandly($url, $post_id = '', $deactivate_cache = false, $a
 	$shortlink = isset($result->shortUrl) ? $result->shortUrl : '';
 
 	if ($shortlink != '') {
-		$shortlink = 'http://'.$shortlink;
+		$shortlink = (essb_option_bool_value('shorturl_rebrandpi_https') ? 'https://' : 'http://').$shortlink;
 		
 		if ($post_id != '') {
 			update_post_meta ( $post_id, 'essb_shorturl_rebrand', $shortlink );

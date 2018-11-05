@@ -61,7 +61,9 @@ class ESSBShortcodeGenerator5 {
 			unset($saved_codes[$key]);
 		}
 		
-		update_option($this->shortcode_cache_option, $saved_codes);
+		delete_option($this->shortcode_cache_option);
+		update_option($this->shortcode_cache_option, $saved_codes, 'no', 'no');
+		//update_option($this->shortcode_cache_option, $saved_codes);
 	}
 	
 	public function generated_stored_shortcodes() {
@@ -490,7 +492,9 @@ jQuery(document).ready(function(){
 		}
 		
 		$saved_codes[$key] = array('name' => $shortcode_name, 'settings' => $options, 'shortcode' => $this->shortcode);
-		update_option($this->shortcode_cache_option, $saved_codes);
+		delete_option($this->shortcode_cache_option);
+		update_option($this->shortcode_cache_option, $saved_codes, 'no', 'no');
+		//update_option($this->shortcode_cache_option, $saved_codes);
 		
 		return $key;
 	}
@@ -510,20 +514,22 @@ jQuery(document).ready(function(){
 				
 			if ($type == "networks" || $type == "networks_sp" || $type == "networks_sfce") {
 		
-				if (count($value) > 0 && $value != '') {
-					$network_list = "";
-					foreach ( $value as $nw ) {
-						if ($network_list != '') {
-							$network_list .= ",";
+				if (is_array($value)) {
+					if (count($value) > 0 && $value != '') {
+						$network_list = "";
+						foreach ( $value as $nw ) {
+							if ($network_list != '') {
+								$network_list .= ",";
+							}
+							$network_list .= $nw;
 						}
-						$network_list .= $nw;
+			
+						if ($network_list == "") {
+							$network_list = "no";
+						}
+			
+						$value = $network_list;
 					}
-		
-					if ($network_list == "") {
-						$network_list = "no";
-					}
-		
-					$value = $network_list;
 				}
 			}
 				
@@ -697,8 +703,9 @@ jQuery(document).ready(function(){
 	public function activate($shortcode = 'easy-social-share') {
 		$this->shortcodeOptions = array();
 		
-		$this->register("shortcode_name", array("type" => "textbox", "text" => "Store my shortcode", "comment" => "Enter custom settings name to store your generated shortcode. This will make possible to use the code with generated key and manage options easy without replacing all shortcodes", "value" => "", "fullwidth" => "true"));
-		
+		if ($shortcode != 'easy-tweet' && $shortcode != 'easy-click2chat' && $shortcode != 'easy-social-share-cta') {
+			$this->register("shortcode_name", array("type" => "textbox", "text" => "Store my shortcode", "comment" => "Enter custom settings name to store your generated shortcode. This will make possible to use the code with generated key and manage options easy without replacing all shortcodes", "value" => "", "fullwidth" => "true"));
+		}
 		
 		if ($shortcode == 'easy-social-share') {
 			$this->includeOptionsForEasyShare();
@@ -742,12 +749,73 @@ jQuery(document).ready(function(){
 		if ($shortcode == 'easy-subscribe') {
 			$this->includeSubscribe();
 		}
+		
+		if ($shortcode == 'easy-tweet') {
+			$this->includeSharableQuotes();
+		}
+		
+		if ($shortcode == 'easy-click2chat') {
+			$this->includeClick2Chat();
+		}
+		
+		if ($shortcode == 'easy-social-share-cta') {
+			$this->includeShareCTA();
+		}
+	}
+	
+	private function includeShareCTA() {
+		$this->shortcode = 'easy-social-share-cta';
+		$this->shortcodeTitle = '[easy-social-share-cta] Call To Action Share Button';
+		$this->register("text", array("type" => "textbox", "text" => "Custom button text", "comment" => "", "value" => "", "fullwidth" => "true"));
+		$this->register("background", array("type" => "textbox", "text" => "Background color", "comment" => "", "value" => "", "fullwidth" => "false"));
+		$this->register("color", array("type" => "textbox", "text" => "Text color", "comment" => "", "value" => "", "fullwidth" => "false"));
+		
+		$style = array('' => 'Button with background color', 'outline' => 'Outline button', 'modern' => 'Modern button');
+		$this->register("style", array("type" => "dropdown", "text" => "Button style", "comment" => "", "sourceOptions" => $style));
+		
+		$listOfTypes = array(
+				'' => 'Icon #1',
+				'share-alt-square' => 'Icon #2',
+				'share-alt' => 'Icon #3',
+				'share-tiny' => 'Icon #4',
+				'share-outline' => 'Icon #5'
+		);
+		$this->register("icon", array("type" => "dropdown", "text" => "Icon", "comment" => "", "sourceOptions" => $listOfTypes));
+		$this->register("stretched", array("type" => "checkbox", "text" => "Full width button", "comment" => "", "value" => "true"));
+		$this->register("total", array("type" => "checkbox", "text" => "Show total share counter on button", "comment" => "", "value" => "true"));
+		
+	}
+	
+	private function includeClick2Chat() {
+		$this->shortcode = 'easy-click2chat';
+		$this->shortcodeTitle = '[easy-click2chat] Click 2 Chat';
+		$this->register("text", array("type" => "textbox", "text" => "Custom button text", "comment" => "", "value" => "", "fullwidth" => "true"));
+		$this->register("background", array("type" => "textbox", "text" => "Background color", "comment" => "", "value" => "", "fullwidth" => "false"));
+		$this->register("color", array("type" => "textbox", "text" => "Text color", "comment" => "", "value" => "", "fullwidth" => "false"));
+		$listOfTypes = array("whatsapp" => "Icon #1", "comments" => "Icon #2", "comment-o" => "Icon #3", "viber" => "Icon #4");
+		$this->register("icon", array("type" => "dropdown", "text" => "Icon", "comment" => "", "sourceOptions" => $listOfTypes));
+		
+		
+	}
+	
+	private function includeSharableQuotes() {
+		$this->shortcode = 'easy-tweet';
+		$this->shortcodeTitle = '[easy-tweet] Sharable Quotes';
+		$this->register("tweet", array("type" => "textbox", "text" => "Customized Tweet", "comment" => "", "value" => "", "fullwidth" => "true"));
+		$this->register("user", array("type" => "textbox", "text" => "via Twitter Username", "comment" => "", "value" => "", "fullwidth" => "false"));
+		$this->register("hashtags", array("type" => "textbox", "text" => "Hashtags", "comment" => "", "value" => "", "fullwidth" => "true"));
+		$this->register("url", array("type" => "textbox", "text" => "Custom Tweet URL", "comment" => "", "value" => "", "fullwidth" => "true"));
+		$listOfTypes = array("" => "Default (Blue)", "light" => "Light", "dark" => "Dark", "qlite" => "Quote");
+		$this->register("template", array("type" => "dropdown", "text" => "Template", "comment" => "", "sourceOptions" => $listOfTypes));
+		
+		$this->register("via", array("type" => "checkbox", "text" => "Do not include via Twitter Username", "comment" => "", "value" => "no"));
+		$this->register("usehashtags", array("type" => "checkbox", "text" => "Do not include hashtags", "comment" => "", "value" => "no"));
 	}
 	
 	private function includeSubscribe() {
 		$this->shortcode = 'easy-subscribe';
 		$this->shortcodeTitle = '[easy-subscribe] Shortcode to display subscribe form';
-	
+
 		$listOfTypes = array("" => "Subscribe form with service integration (MailChimp, GetReponse, myMail, MailPoet)", "form" => "Custom code subscribe form");
 		$this->register("mode", array("type" => "dropdown", "text" => "Form type", "comment" => "Choose form generation type", "sourceOptions" => $listOfTypes));
 		$listOfTypes = array("" => "Default subscribe button design", "design1" => "Design #1", "design2" => "Design #2", "design3" => "Design #3", "design4" => "Design #4", "design5" => "Design #5", "design6" => "Design #6", "design7" => "Design #7", "design8" => "Design #8", "design9" => "Design #9");
@@ -845,6 +913,8 @@ jQuery(document).ready(function(){
 		
 		$this->register("template", array("type" => "dropdown", "text" => "Template:", "comment" => "", "sourceOptions" => ESSBSocialProfilesHelper::available_templates()));
 		$this->register("animation", array("type" => "dropdown", "text" => "Animation:", "comment" => "", "sourceOptions" => ESSBSocialProfilesHelper::available_animations()));
+		$this->register("align", array("type" => "dropdown", "text" => "Alignment:", "comment" => "", "sourceOptions" => ESSBSocialProfilesHelper::available_alignments()));
+		$this->register("size", array("type" => "dropdown", "text" => "Size:", "comment" => "", "sourceOptions" => ESSBSocialProfilesHelper::available_sizes()));
 		$this->register("nospace", array("type" => "checkbox", "text" => "Remove space between buttons:", "comment" => "", "value" => "true"));
 		$this->register('networks', array("type" => "networks_sp", "text" => "Select Social Networks:", "comment" => "Provide list of networks that will be included"));
 		

@@ -317,12 +317,12 @@ class ESSBOptionsFramework {
 				if ($mode == 'vertical') {
 					self::draw_title($title, $description, 'inner-row');
 					self::draw_options_row_start_full($class);
-					self::draw_fileselect_image_field($id, $settings_group, $option_value, $icon, $class);
+					self::draw_fileselect_image_field($id, $settings_group, $option_value, $icon, $class.$mode);
 					self::draw_options_row_end();
 				}
 				else {
 					self::draw_options_row_start($title, $description, $recommended, $col_width);
-					self::draw_fileselect_image_field($id, $settings_group, $option_value, $icon, $class);
+					self::draw_fileselect_image_field($id, $settings_group, $option_value, $icon, $class.$mode);
 					self::draw_options_row_end();
 				}
 				break;
@@ -413,7 +413,10 @@ class ESSBOptionsFramework {
 				self::draw_options_row_end();
 				break;
 			case "toggle-in-panel":
-				self::draw_settings_panel_start($title);
+				
+				$add_class = isset($element_options['extra_class']) ? $element_options['extra_class'] : $id;
+				
+				self::draw_settings_panel_start($title, $add_class);
 				self::draw_toggle_field($id, $listOfValues, $settings_group, $option_value, $element_options);
 				self::draw_settings_panel_end($description, $recommended);
 				break;
@@ -423,7 +426,7 @@ class ESSBOptionsFramework {
 				self::draw_options_row_end();
 				break;
 			case "group-select-in-panel":
-				self::draw_settings_panel_start($title);
+				self::draw_settings_panel_start($title, $id);
 				self::draw_group_select_field($id, $listOfValues, $settings_group, $option_value, $element_options);
 				self::draw_settings_panel_end($description, $recommended);
 				break;

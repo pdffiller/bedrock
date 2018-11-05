@@ -794,8 +794,6 @@ class ESSBAdminControler {
 		
 		wp_enqueue_script ( 'essb-morris', ESSB3_PLUGIN_URL . '/assets/admin/morris.min.js', array ('jquery' ), ESSB3_VERSION );
 		wp_enqueue_script ( 'essb-raphael', ESSB3_PLUGIN_URL . '/assets/admin/raphael-min.js', array ('jquery' ), ESSB3_VERSION );
-		
-		//wp_enqueue_script ( 'essb-chartjs', ESSB3_PLUGIN_URL . '/assets/admin/chart.min.js', array ('jquery' ), ESSB3_VERSION );
 	}
 	
 	public function handle_save_settings() {
@@ -934,7 +932,9 @@ class ESSBAdminControler {
 				
 			if (is_array($imported_options)) {
 				$result = true;
-				update_option(ESSB3_OPTIONS_NAME_FANSCOUNTER, $imported_options);
+				delete_option(ESSB3_OPTIONS_NAME_FANSCOUNTER);
+				update_option(ESSB3_OPTIONS_NAME_FANSCOUNTER, $imported_options, 'no', 'no');
+				//update_option(ESSB3_OPTIONS_NAME_FANSCOUNTER, $imported_options);
 			}
 		}
 		
@@ -1107,7 +1107,9 @@ class ESSBAdminControler {
 		}
 		
 		//print_r($current_options);
-		update_option(ESSB3_OPTIONS_NAME_FANSCOUNTER, $current_options);
+		delete_option(ESSB3_OPTIONS_NAME_FANSCOUNTER);
+		update_option(ESSB3_OPTIONS_NAME_FANSCOUNTER, $current_options, 'no', 'no');
+		//update_option(ESSB3_OPTIONS_NAME_FANSCOUNTER, $current_options);
 		
 		// clear cached timeouts for social networks
 		if (defined('ESSB3_SOCIALFANS_ACTIVE')) {
@@ -1425,8 +1427,10 @@ class ESSBAdminControler {
 			$current_options['deactivate_method_heroshare'] = 'false';
 			$current_options['deactivate_method_integrations'] = 'false';
 			
-			$current_options['activate_fake'] = 'false';
-			$current_options['activate_hooks'] = 'false';
+			// @since 5.6 - deactivation of fake and hooks will not happen unless a mode that exludes them
+			// is selected
+			//$current_options['activate_fake'] = 'false';
+			//$current_options['activate_hooks'] = 'false';
 			
 			if ($functions_mode == 'light') {
 				$current_options['deactivate_module_aftershare'] = 'true';
@@ -1555,7 +1559,9 @@ class ESSBAdminControler {
 			$history_container[$now] = $options;
 		}
 		
-		update_option(ESSB5_SETTINGS_ROLLBACK, $history_container);
+		// stop autoloading of settings rollback option
+		delete_option(ESSB5_SETTINGS_ROLLBACK);
+		update_option(ESSB5_SETTINGS_ROLLBACK, $history_container, 'no', 'no');
 	}
 	
 	public function update_optons() {

@@ -38,19 +38,19 @@ class ESSBCore {
 	/**
 	 * Cloning disabled
 	 */
-	private function __clone() {
+	public function __clone() {
 	}
 	
 	/**
 	 * Serialization disabled
 	 */
-	private function __sleep() {
+	public function __sleep() {
 	}
 	
 	/**
 	 * De-serialization disabled
 	 */
-	private function __wakeup() {
+	public function __wakeup() {
 	}
 	
 	
@@ -86,7 +86,7 @@ class ESSBCore {
 			wp_reset_postdata();
 		}
 
-		if (essb_is_plugin_deactivated_on() || essb_is_module_deactivated_on('share')) {
+		if (essb_is_plugin_deactivated_on() || essb_is_module_deactivated_on('share') || essb_is_module_deactivated_on_category('share')) {
 			$this->deactivate_stored_filter_and_actions();
 			return;
 		}
@@ -179,6 +179,11 @@ class ESSBCore {
 
 		$template_url = ESSB3_PLUGIN_URL.'/assets/css/easy-social-share-buttons'.$use_minifed_css.'.css';
 		essb_resource_builder()->add_static_resource($template_url, 'easy-social-share-buttons', 'css');
+		
+		// activating core form styles if option is set
+		if (essb_option_bool_value('subscribe_css_always')) {
+			essb_resource_builder()->add_static_resource(ESSB3_PLUGIN_URL .'/assets/css/essb-subscribe'.(ESSBGlobalSettings::$use_minified_css ? ".min": "").'.css', 'easy-social-share-buttons-subscribe', 'css');
+		}
 		
 		$core_js = ESSB3_PLUGIN_URL.'/assets/js/essb-core'.$use_minifed_js.'.js';
 		essb_resource_builder()->add_static_resource($core_js, 'easy-social-share-buttons-core', 'js');
@@ -274,6 +279,10 @@ class ESSBCore {
 		
 		
 		if (in_array('flyin', $this->general_options['button_position'])) {
+			$display_locations_style = true;
+		}
+		
+		if (in_array('sharebutton', $this->general_options['button_position'])) {
 			$display_locations_style = true;
 		}
 		
@@ -963,7 +972,7 @@ class ESSBCore {
 			}
 		}
 		
-		if (essb_is_module_deactivated_on('share')) {
+		if (essb_is_module_deactivated_on('share') || essb_is_module_deactivated_on_category('share')) {
 			$is_singular = false;
 			$is_lists_authorized = false;
 		}
@@ -1051,6 +1060,8 @@ class ESSBCore {
 	
 	function trigger_bottom_mark($content) {
 		$deactivate_trigger = false;
+		$deactivate_trigger = essb_option_bool_value('deactivate_bottom_mark');
+		
 		$deactivate_trigger = apply_filters('essb5_remove_bottom_mark', $deactivate_trigger);
 		
 		if ($deactivate_trigger) {
@@ -1088,6 +1099,23 @@ class ESSBCore {
 				
 			$share_buttons = $this->generate_share_buttons('cornerbar');
 			$output .= essb5_generate_corner_bar($share_buttons);
+		}
+	
+		echo $output;
+	}
+
+	function display_sharebutton() {
+		$post_types = $this->general_options['display_in_types'];
+		$is_valid = $this->check_applicability($post_types, 'sharebutton');
+	
+		$output = '';
+	
+		if ($is_valid) {
+			$share_buttons = $this->generate_share_buttons('sharebutton');
+				
+			essb_depend_load_function('essb5_generate_share_button', 'lib/core/display-methods/essb-display-method-button.php');
+				
+			$output .= essb5_generate_share_button($share_buttons);
 		}
 	
 		echo $output;
@@ -2116,6 +2144,16 @@ class ESSBCore {
 					$button_count_correction_when_total = 1;
 				}
 				
+				if (essb_option_bool_value('mobile_sharebuttonsbar_counter')) {
+					$button_style['show_counter'] = true;
+					$button_style['counter_pos'] = 'inside';
+					$button_style['button_style'] = 'button';
+					
+					if (!essb_option_bool_value('mobile_sharebuttonsbar_total')) {
+						$button_style['total_counter_pos'] = 'hidden';
+					}
+				}
+				
 				$available_networks_count = essb_option_value('mobile_sharebuttonsbar_count');
 				$mobile_sharebuttonsbar_names = essb_option_bool_value( 'mobile_sharebuttonsbar_names');
 				if ($mobile_sharebuttonsbar_names) {
@@ -2299,7 +2337,7 @@ class ESSBCore {
 		}
 		
 		
-		$ssbuttons = ESSBButtonHelper::draw_share_buttons($post_share_details, $button_style, 
+		$ssbuttons = essb_draw_share_buttons($post_share_details, $button_style, 
 				$social_networks, $social_networks_order, $social_networks_names, $position, $salt, $likeshare, $post_native_details);
 		
 		
@@ -2457,6 +2495,8 @@ class ESSBCore {
 		$style['share_button_func'] = essb_option_value('share_button_func');
 		$style['share_button_icon'] = essb_option_value('share_button_icon');		
 		$style['share_button_style'] = essb_option_value('share_button_style');
+		
+		$style['button_size'] = essb_option_value('button_size');
 		
 		if (has_filter('essb4_button_visual_options')) {
 			$style = apply_filters('essb4_button_visual_options', $style, $position);

@@ -107,7 +107,8 @@ if (! function_exists ( 'essb_shortcode_share_prepare' )) {
 				'sharebtn_counter' => 'string',
 				'vcgridpost' => '',
 				'email_subject' => 'string',
-				'email_message' => 'string' );
+				'email_message' => 'string',
+				'postid' => 'string' );
 		$shortcode_options = array (
 				'buttons' => '', 
 				'counters' => 0, 
@@ -180,7 +181,8 @@ if (! function_exists ( 'essb_shortcode_share_prepare' )) {
 				'sharebtn_counter' => '',
 				'vcgridpost' => '',
 				'email_subject' => '',
-				'email_message' => '' );
+				'email_message' => '',
+				'postid' => '' );
 		
 		$atts = shortcode_atts ( $shortcode_options, $atts );
 		
