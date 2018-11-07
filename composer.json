@@ -52,6 +52,10 @@
       "type": "git"
     },
     {
+      "url": "git@github.com:pdffiller/easy-social-share-buttons3.git",
+      "type": "git"
+    },
+    {
       "type": "package",
       "package": {
         "name": "wp-premium/gravityforms",
@@ -91,6 +95,7 @@
     "pdffiller/blog-plugin-form-content-provider":"dev-master",
     "pdffiller/blog-pdffiller-client":"dev-master",
     "pdffiller/blog-plugin-related-forms":"dev-master",
+    "pdffiller/easy-social-share-buttons3":"dev-master",
     "wp-premium/gravityforms":"*",
     "wpackagist-plugin/wordpress-popup": "6.0",
     "wpackagist-plugin/google-analytics-dashboard-for-wp": "~5.2.2"
