@@ -330,11 +330,11 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:pdffiller/easy-social-share-buttons3.git",
-                "reference": "6e4ea6e838cc34517f6f13cf8e29036fdad2be9e"
+                "reference": "cced7c974ad43a55e7d875e7b79e2caf7979ff85"
             },
             "type": "wordpress-plugin",
             "description": "Easy social share buttons3 pligun for WP",
-            "time": "2018-11-06T09:27:14+00:00"
+            "time": "2018-11-08T11:10:04+00:00"
         },
         {
             "name": "pdffiller/pdffiller-blog-theme",
