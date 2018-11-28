@@ -99,7 +99,8 @@
     "wp-premium/gravityforms":"*",
     "wpackagist-plugin/wordpress-popup": "6.0",
     "wpackagist-plugin/google-analytics-dashboard-for-wp": "~5.2.2",
-    "seravo/wp-simple-header-footer-html": "^1.2"
+    "seravo/wp-simple-header-footer-html": "^1.2",
+    "wpackagist-plugin/shortcodes-ultimate": "5.1.1"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^2.5.1"
