@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e8c326c07617114e2fd846fb87e0052e",
+    "content-hash": "541238d859494d8445568c883c4cd201",
     "packages": [
         {
             "name": "composer/installers",
@@ -338,15 +338,15 @@
         },
         {
             "name": "pdffiller/pdffiller-blog-theme",
-            "version": "dev-master",
+            "version": "dev-yarema.b_MKT-1433_change_rel_for_category_tag",
             "source": {
                 "type": "git",
                 "url": "git@github.com:pdffiller/blog-theme.git",
-                "reference": "a831cbc2cd1114ff5f5c3a07b2b43ccffb5df15c"
+                "reference": "79997292f7ffa06fa7f59085401326ed5ad341be"
             },
             "type": "wordpress-theme",
             "description": "PDFfiller blog theme",
-            "time": "2018-12-19T14:46:45+00:00"
+            "time": "2019-05-10T12:10:24+00:00"
         },
         {
             "name": "roots/wp-password-bcrypt",
