@@ -732,15 +732,15 @@
         },
         {
             "name": "wpackagist-plugin/wordfence",
-            "version": "6.3.21",
+            "version": "7.3.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordfence/",
-                "reference": "tags/6.3.21"
+                "reference": "tags/7.3.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordfence.6.3.21.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordfence.7.3.2.zip",
                 "reference": null,
                 "shasum": null
             },
