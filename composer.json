@@ -89,7 +89,7 @@
     "wpackagist-plugin/kraken-image-optimizer":"*",
     "wpackagist-plugin/real-time-find-and-replace":"*",
     "wpackagist-plugin/popup-maker":"1.6.6",
-    "pdffiller/pdffiller-blog-theme":"dev-master",
+    "pdffiller/pdffiller-blog-theme":"dev-yarema.b_MKT_2239_add_seo_fix_for_blog",
     "pdffiller/blog-plugin-text-seo-scoring":"dev-master",
     "pdffiller/blog-plugin-form-content-provider":"dev-master",
     "pdffiller/blog-pdffiller-client":"dev-master",
