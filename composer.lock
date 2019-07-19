@@ -342,11 +342,11 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:pdffiller/blog-theme.git",
-                "reference": "cf56dc82c107cf38a4dd57abcbea91169ce66742"
+                "reference": "e1bd29b3d4c3a4c79b1ef341e87b6bc5980f87c9"
             },
             "type": "wordpress-theme",
             "description": "PDFfiller blog theme",
-            "time": "2019-07-12T13:43:27+00:00"
+            "time": "2019-07-19T06:57:57+00:00"
         },
         {
             "name": "roots/wp-password-bcrypt",
